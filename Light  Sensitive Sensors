@@ -1,0 +1,20 @@
+
+int ldr = A3; // LDR connected to analog pin A3
+int bulb = 7; // Bulb connected to digital pin 7
+
+void setup() {
+  pinMode(bulb, OUTPUT); // Set the bulb pin as an output
+  pinMode(ldr, INPUT);   // Set the LDR pin as an input
+}
+
+void loop() {
+  // Read the value from the LDR
+  int ldrValue = analogRead(ldr);
+  
+  // Check if the LDR value is greater than 500
+  if (ldrValue > 500) {
+    digitalWrite(bulb, LOW); // Turn off the bulb
+  } else {
+    digitalWrite(bulb, HIGH); // Turn on the bulb
+  }
+}
