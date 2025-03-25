@@ -1,0 +1,25 @@
+int light= A1;
+int gsensor=A0;
+
+void setup()
+{
+  pinMode(gsensor, INPUT);
+  pinMode(light,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  float sensorValue,gsensor;
+  sensorValue=analogRead(gsensor);
+  if(sensorValue>=300){
+  digitalWrite(light,HIGH);
+    delay(1000);
+    digitalWrite(light,LOW);
+    Serial.print(sensorValue);
+    Serial.println("Smoke Detected");
+}
+ digitalWrite(light,LOW);
+ Serial.println(sensorValue);
+  delay(1000);
+}
