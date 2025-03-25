@@ -1,0 +1,31 @@
+// Define the pins for the ultrasonic sensor 
+ const int trigPin = 9; // Arduino digital pin for the trigger 
+ const int echoPin = 10; // Arduino digital pin for the echo 
+ // Variables to store the duration and distance 
+ long duration; 
+ int distance; 
+ void setup() { 
+ // Initialize serial communication for debugging 
+ Serial.begin(9600); 
+ // Define the trigger and echo pins as OUTPUT and INPUT 
+ pinMode(trigPin, OUTPUT); 
+ pinMode(echoPin, INPUT); 
+ } 
+ void loop() { 
+ // Trigger a pulse to the sensor 
+ digitalWrite(trigPin, LOW); 
+ delayMicroseconds (2); 
+ digitalWrite(trigPin, HIGH); 
+ delayMicroseconds (10); 
+digitalWrite(trigPin, LOW); 
+ // Measure the duration of the pulse from the echo 
+ duration = pulseIn(echoPin, HIGH); 
+ // Calculate the distance based on the speed of sound 
+ distance = duration * 0.034 / 2; // Divide by 2 because the sound travels to the object and back 
+ // Print the distance to the serial monitor 
+ Serial.print("Distance: "); 
+ Serial.print(distance); 
+ Serial.println("cm"); 
+ // Add a delay between measurements 
+delay(1000); // 1 second 
+}
