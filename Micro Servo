@@ -1,0 +1,17 @@
+// C++ code
+//
+#include<Servo.h>
+Servo ServoBase;
+void setup()
+{
+  ServoBase.attach(A1);
+  ServoBase.write(0);
+}
+
+void loop()
+{
+  for(int i=0;i<=45;i++){
+    ServoBase.write(i);
+    delay(200);
+  }
+}
