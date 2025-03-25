@@ -1,0 +1,39 @@
+// C++ code
+//
+const int sensorPin = 40;
+const int ledcool = 11;
+const int lednormal = 12;
+const int ledhot = 13;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(ledcool, OUTPUT);
+  pinMode(lednormal, OUTPUT);
+  pinMode(ledhot, OUTPUT);
+}
+
+void loop()
+{
+  int sensorvalue = analogRead(sensorPin);
+  float voltage = (sensorvalue/1024.0)*5.0;
+  float temperatureC = (voltage-0.5)*100;
+  Serial.print("temperature : ");
+  Serial.print(temperatureC);
+  Serial.print("C");
+  
+  if(temperatureC<20){
+    digitalWrite(ledcool, HIGH);
+    digitalWrite(lednormal, LOW);
+    digitalWrite(ledhot, LOW);
+  } else if(temperatureC>= 20 && temperatureC< 30){
+    digitalWrite(ledcool, LOW);
+    digitalWrite(lednormal, HIGH);
+    digitalWrite(ledhot, LOW);
+  } else{
+    digitalWrite(ledcool, LOW);
+    digitalWrite(lednormal, LOW);
+    digitalWrite(ledhot, HIGH);
+  }
+  delay(1000); // Wait for 1000 millisecond(s)
+}
