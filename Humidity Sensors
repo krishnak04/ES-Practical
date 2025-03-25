@@ -1,0 +1,13 @@
+const int analogIn = A1; //Connect the humidity sensor to this pin
+int humiditySensorOutput = 0;
+void setup() { 
+ Serial.begin(9600);
+}
+void loop() {
+ humiditySensorOutput = analogRead(analogIn);
+ int humidityPercentage = map(humiditySensorOutput, 0, 1023, 10, 70);
+ Serial.print("Humidity: "); // Printing out Humidity Percentage
+ Serial.print(humidityPercentage);
+ Serial.println("%");
+ delay(5000); // Iterate every 5 seconds
+}
